@@ -1,8 +1,9 @@
-import Form from "./containers/Cadastro"
+// import Form from "./containers/Cadastro"
+import Home from "./containers/Home"
 
 const App = () => (
   <>
-    <Form />
+    <Home/>
   </>
 )
 export default App
