@@ -1,15 +1,14 @@
 import Container from "./style";
 
-const Home = () => {
+// eslint-disable-next-line react/prop-types
+const Home = ({nome, numero, email}) => {
 
   return(
     <Container>
-      <h1>Seus Contatos</h1>
-
     <div>
-      <span>nome: </span>
-      <span>numero: </span>
-      <span>email: </span>
+      <span>nome: {nome}</span>
+      <span>numero: {numero}</span>
+      <span>email: {email}</span>
     </div>
     </Container>
   )
