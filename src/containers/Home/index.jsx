@@ -1,15 +1,20 @@
+import { useSelector } from "react-redux";
 import Container from "./style";
+import Cadastro from "../Cadastro";
 
 // eslint-disable-next-line react/prop-types
 const Home = ({nome, numero, email}) => {
+  const items = useSelector((state) => state.salvar)
 
   return(
     <Container>
-    <div>
-      <span>nome: {nome}</span>
-      <span>numero: {numero}</span>
-      <span>email: {email}</span>
-    </div>
+    <ul>
+      {items.map(item => (
+        <li key={item.id}>
+          <Cadastro item={item.nome}/>
+        </li>
+      ))}
+    </ul>
     </Container>
   )
 }

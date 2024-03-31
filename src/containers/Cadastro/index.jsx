@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Botao from "../../components/Button";
 import Form from "./style";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addContato } from "../../store/reducers/salvarContato";
 
 const Cadastro = () => {
@@ -11,6 +11,8 @@ const Cadastro = () => {
   const [telefone, setTelefone] = useState('')
 
   const dispatch = useDispatch()
+
+  const items = useSelector((state) => state.salvar)
 
   const addContact = (event) => {
     event.preventDefault()
@@ -53,6 +55,14 @@ const Cadastro = () => {
         </div>
 
           <Botao text={"cadastrar"} />
+
+          <ul>
+            {items.map(item => (
+              <li key={item.id}>
+                <Cadastro item={item.nome}/>
+              </li>
+            ))}
+          </ul>
 
       </Form>
     </>
