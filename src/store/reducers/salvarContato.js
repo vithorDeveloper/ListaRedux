@@ -1,22 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const salvarSlice = createSlice ({
-  name: 'salvar',
-  initialState: [
-    {id: 1, nome: 'vitor', email: 'vitor@emai.com', telefone: 19298374}
-  ],
+export const contatosSlice = createSlice ({
+  name: 'contatos',
+  initialState: [],
   reducers:{
-    addContato: (state, action) => {
+    adicionar: (state, action) => {
       const contato = {
-        id: new Date(),
-        nome: action.payload.nome,
-        email: action.payload.email,
-        telefone: action.payload.telefone
-      }
+          id: new Date().toISOString(),
+          nome: action.payload.nome,
+          email: action.payload.email,
+          telefone: action.payload.telefone
+        }
       state.push(contato)
+    },
+
+    remover: (state, action) => {
+      state = state.filter((contato) => contato.telefone !== action.payload)
     }
   }
 })
 
-export const {addContato} = salvarSlice.actions
-export default salvarSlice.reducer
+export const {adicionar, remover} = contatosSlice.actions
+export default contatosSlice.reducer

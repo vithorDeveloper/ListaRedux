@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import salvarReducer from "./reducers/salvarContato";
+import contatosReducer from "./reducers/salvarContato";
 
-export default configureStore({
+const store = configureStore({
   reducer:{
-      salvar: salvarReducer
+      contatos: contatosReducer
   }
 })
+
+export default store
