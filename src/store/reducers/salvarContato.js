@@ -20,7 +20,7 @@ export const contatosSlice = createSlice ({
       return stat
     },
 
-    
+
   }
 })
 
