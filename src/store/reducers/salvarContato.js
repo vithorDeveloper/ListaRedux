@@ -15,8 +15,12 @@ export const contatosSlice = createSlice ({
     },
 
     remover: (state, action) => {
-      state = state.filter((contato) => contato.telefone !== action.payload)
-    }
+      const stat = state.filter((item) => item.telefone !== action.payload)
+      console.log(stat)
+      return stat
+    },
+
+    
   }
 })
 
