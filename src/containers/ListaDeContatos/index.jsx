@@ -25,24 +25,29 @@ const ListaDeContatos = () => {
         {contatos.map(item => (
           <li key={item.id}>
 
-            <p>{item.nome}</p>
-            <p>{item.email}</p>
-            <p>{item.telefone}</p>
 
-            <Button onClick={() => dispatch(remover(item.telefone))}>apagar</Button>
 
             { editar ? (
-                <Button 
-                  onClick={() => setEditar(false)}
-                >
-                  salvar
-                </Button>
+                <>
+                <div className="sectionInputs">
+                  <input type="text" placeholder={item.nome}/>
+                  <input type="text" placeholder={item.email}/>
+                  <input type="text" placeholder={item.telefone}/>
+                </div>
+
+                  <Button onClick={() => setEditar(false)}> salvar </Button>
+                  <Button onClick={() => dispatch(remover(item.telefone))}> cancelar </Button>
+                </>
               ) : (
-                <Button
-                  onClick={() => setEditar(true)}
-                >
-                  editar
-                </Button>
+                <>  
+                    <p>{item.nome}</p>
+                    <p>{item.email}</p>
+                    <p>{item.telefone}</p>
+
+                    <Button onClick={() => setEditar(true)}> editar </Button>
+
+                    <Button onClick={() => dispatch(remover(item.telefone))}> apagar </Button>
+                </>
               )
             }
 
