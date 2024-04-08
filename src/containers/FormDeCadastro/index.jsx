@@ -37,7 +37,7 @@ const FormDeCadastro = () => {
           />
 
           <input 
-            type="email" 
+            type="email"
             placeholder="Digite seu email"
             onChange={e => setEmail(e.target.value)}
           />

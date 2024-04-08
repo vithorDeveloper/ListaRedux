@@ -1,21 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import Container from "./style";
 import Button from "../../components/Button/style";
-import { remover } from "../../store/reducers/salvarContato";
-import { useState } from "react";
+import { remover, editar as edit } from "../../store/reducers/salvarContato";
+import { useState, useEffect } from "react";
 import EstiloGlobal from "../../styles/globalStyle";
 
 const ListaDeContatos = () => {
 
   const [editar, setEditar] = useState(false)
+  const [nome, setNome] = useState('')
+  const [email, setEmail] = useState('')
+  const [telefone, setTelefone] = useState('')
 
   const contatos = useSelector((state) => state.contatos)
 
   const dispatch= useDispatch()
 
-  // const editando = () => {
-    
-  // }
+  useEffect(() => {
+    if(nome.length > 0){
+      setNome(nome)
+    }
+  }, [nome])
 
   return(
     <>
@@ -30,13 +35,39 @@ const ListaDeContatos = () => {
             { editar ? (
                 <>
                 <div className="sectionInputs">
-                  <input type="text" placeholder={item.nome}/>
-                  <input type="text" placeholder={item.email}/>
-                  <input type="text" placeholder={item.telefone}/>
+                  <input 
+                  type="text" 
+                  value={nome}
+                  placeholder={item.nome}
+                  onChange={e => setNome(e.target.value)}
+                  />
+                  <input 
+                  type="text" 
+                  value={email}
+                  placeholder={item.email}
+                  onChange={e => setEmail(e.target.value)}
+                  />
+                  <input 
+                  type="text" 
+                  value={telefone}
+                  placeholder={item.telefone}
+                  onChange={e => setTelefone(e.target.value)}
+                  />
                 </div>
 
-                  <Button onClick={() => setEditar(false)}> salvar </Button>
-                  <Button onClick={() => dispatch(remover(item.telefone))}> cancelar </Button>
+                  <Button onClick={() => {
+                    dispatch(edit({
+                      nome,
+                      email,
+                      telefone
+                    }))
+                      setEditar(false)
+                    }}
+                  > 
+                  salvar 
+                  </Button>
+
+                  <Button onClick={() => setEditar(false)}> cancelar </Button>
                 </>
               ) : (
                 <>  

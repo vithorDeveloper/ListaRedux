@@ -15,14 +15,21 @@ export const contatosSlice = createSlice ({
     },
 
     remover: (state, action) => {
-      const stat = state.filter((item) => item.telefone !== action.payload)
-      console.log(stat)
-      return stat
+      const numero = state.filter((item) => item.telefone !== action.payload)
+      return numero
     },
 
+    editar: (state, action) => {
+      const indexContato = state.findIndex(
+        (contato) => contato.id === action.payload.id
+      )
 
+      if(indexContato >= 0){
+        state.itens[indexContato] = action.payload
+      }
+    }
   }
 })
 
-export const {adicionar, remover} = contatosSlice.actions
+export const {adicionar, remover, editar} = contatosSlice.actions
 export default contatosSlice.reducer
