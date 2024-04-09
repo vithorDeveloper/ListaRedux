@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import Container from "./style";
 import EstiloGlobal from "../../styles/globalStyle";
-import Contato from "../../components/Contato";
+import Contato from "../Contato";
 
 const ListaDeContatos = () => {
   const contatos = useSelector((state) => state.contatos)

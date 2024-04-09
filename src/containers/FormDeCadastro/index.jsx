@@ -3,6 +3,7 @@ import Botao from "../../components/Button";
 import Form from "./style";
 import { useDispatch } from "react-redux";
 import { adicionar } from "../../store/reducers/salvarContato";
+import Input from "../../components/Input";
 
 const FormDeCadastro = () => {
 
@@ -29,21 +30,21 @@ const FormDeCadastro = () => {
     <>
       <Form onSubmit={addContact}>
         <div>
-          <input 
-            type="text" 
-            placeholder="Digite seu nome"
+          <Input 
+            type={"text"} 
+            placeholder={"Digite seu nome"}
             onChange={e => setNome(e.target.value)}
           />
 
-          <input 
-            type="email"
-            placeholder="Digite seu email"
+          <Input 
+            type={"email"}
+            placeholder={"Digite seu email"}
             onChange={e => setEmail(e.target.value)}
           />
 
-          <input
-            type="number" 
-            placeholder="Digite seu telefone"
+          <Input
+            type={"number"} 
+            placeholder={"Digite seu telefone"}
             onChange={e => setTelefone(e.target.value)}
           />
         </div>

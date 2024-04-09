@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { remover, editar as edit } from "../../store/reducers/salvarContato";
 import Button from "../../components/Button/style";
+import Input from "../../components/Input";
+import CardContato from "../../components/CardContato"
 
 const Contato = ({ contato }) => {
   const [editar, setEditar] = useState(false)
@@ -35,18 +37,18 @@ const Contato = ({ contato }) => {
     <li key={contato.id}>
       { editar ? (
         <>
-          <input 
-            type="text" 
+          <Input 
+            type={"text"} 
             value={nome} 
             onChange={e => setNome(e.target.value)}
           />
-          <input 
-            type="text" 
+          <Input 
+            type={"email"} 
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
-          <input 
-            type="text" 
+          <Input 
+            type={"number"} 
             value={telefone}
             onChange={e => setTelefone(e.target.value)}
           />
@@ -67,9 +69,9 @@ const Contato = ({ contato }) => {
         </>
       ) : (
         <>  
-          <p>{nome}</p>
-          <p>{email}</p>
-          <p>{telefone}</p>
+          <CardContato text={nome}/>
+          <CardContato text={email}/>
+          <CardContato text={telefone}/>
 
           <Button onClick={() => handleEditar()}> editar </Button>
           <Button onClick={() => dispatch(remover(contato.telefone))}> apagar </Button>
