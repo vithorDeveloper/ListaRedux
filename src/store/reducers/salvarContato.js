@@ -5,13 +5,24 @@ export const contatosSlice = createSlice ({
   initialState: [],
   reducers:{
     adicionar: (state, action) => {
-      const contato = {
-          id: new Date().toISOString(),
-          nome: action.payload.nome,
-          email: action.payload.email,
-          telefone: action.payload.telefone
+
+      const numeroExiste = state.find(
+        (numero) => 
+          numero.telefone === action.payload.telefone
+      )
+      
+      if(numeroExiste){
+        alert('telefone ja cadastrado')
+      }else{
+          const contato = {
+              id: new Date().toISOString(),
+              nome: action.payload.nome,
+              email: action.payload.email,
+              telefone: action.payload.telefone
+            }
+          state.push(contato)
         }
-      state.push(contato)
+
     },
 
     remover: (state, action) => {
@@ -23,9 +34,10 @@ export const contatosSlice = createSlice ({
       const indexContato = state.findIndex(
         (contato) => contato.id === action.payload.id
       )
+      console.log(indexContato)
 
       if(indexContato >= 0){
-        state.itens[indexContato] = action.payload
+        state[indexContato] = action.payload
       }
     }
   }

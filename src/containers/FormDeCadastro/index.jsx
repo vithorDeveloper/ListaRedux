@@ -27,7 +27,6 @@ const FormDeCadastro = () => {
 
   return(
     <>
-    <Botao text={"voltar"}/>
       <Form onSubmit={addContact}>
         <div>
           <input 

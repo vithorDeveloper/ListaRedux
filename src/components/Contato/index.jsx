@@ -1,59 +1,82 @@
-// import { useDispatch } from "react-redux";
-// import { useState } from "react";
-// import { remover, editar as edit } from "../../store/reducers/salvarContato";
-// import Button from "../../components/Button/style";
+/* eslint-disable react/prop-types */
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { remover, editar as edit } from "../../store/reducers/salvarContato";
+import Button from "../../components/Button/style";
 
-// const Contato = ({ contato }) => {
-//   const [editar, setEditar] = useState(false)
-//   const [nome, setNome] = useState(contato.nome)
-//   const [email, setEmail] = useState(contato.email)
-//   const [telefone, setTelefone] = useState(contato.telefone)
+const Contato = ({ contato }) => {
+  const [editar, setEditar] = useState(false)
+  const [nome, setNome] = useState(contato.nome)
+  const [email, setEmail] = useState(contato.email)
+  const [telefone, setTelefone] = useState(contato.telefone)
 
-//   const dispatch = useDispatch()
+  const [nomeInicial, setNomeInicial] = useState(contato.nome)
+  const [emailInicial, setEmailInicial] = useState(contato.email)
+  const [telefoneInicial, setTelefoneInicial] = useState(contato.telefone)
 
-//   return (
-//     <li key={contato.id}>
-//       { editar ? (
-//         <>
-//           <textarea 
-//             value={nome} 
-//             onChange={e => setNome(e.target.value)}
-//           />
-//           <textarea 
-//             value={email}
-//             onChange={e => setEmail(e.target.value)}
-//           />
-//           <textarea 
-//             value={telefone}
-//             onChange={e => setTelefone(e.target.value)}
-//           />
+  const dispatch = useDispatch()
+  
+  const handleEditar = () => {
+    setEditar(true);
+    setNomeInicial(nome);
+    setEmailInicial(email);
+    setTelefoneInicial(telefone);
+  }
 
-//           <Button onClick={() => {
-//             dispatch(edit({
-//               id: contato.id,
-//               nome,
-//               email,
-//               telefone
-//             }))
-//             setEditar(false)
-//           }}> 
-//             salvar 
-//           </Button>
 
-//           <Button onClick={() => setEditar(false)}> cancelar </Button>
-//         </>
-//       ) : (
-//         <>  
-//           <p>{contato.nome}</p>
-//           <p>{contato.email}</p>
-//           <p>{contato.telefone}</p>
+  const handleContactInitial = () => {
+    setEditar(false)
+    setNome(nomeInicial)
+    setEmail(emailInicial)
+    setTelefone(telefoneInicial)
+  }
 
-//           <Button onClick={() => setEditar(true)}> editar </Button>
-//           <Button onClick={() => dispatch(remover(contato.telefone))}> apagar </Button>
-//         </>
-//       )}
-//     </li>
-//   )
-// }
+  return (
+    <li key={contato.id}>
+      { editar ? (
+        <>
+          <input 
+            type="text" 
+            value={nome} 
+            onChange={e => setNome(e.target.value)}
+          />
+          <input 
+            type="text" 
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+          <input 
+            type="text" 
+            value={telefone}
+            onChange={e => setTelefone(e.target.value)}
+          />
 
-// export default Contato
+          <Button onClick={() => {
+            dispatch(edit({
+              id: contato.id,
+              nome,
+              email,
+              telefone
+            }))
+            setEditar(false)
+          }}> 
+            salvar 
+          </Button>
+
+          <Button onClick={() => handleContactInitial()}> cancelar </Button>
+        </>
+      ) : (
+        <>  
+          <p>{nome}</p>
+          <p>{email}</p>
+          <p>{telefone}</p>
+
+          <Button onClick={() => handleEditar()}> editar </Button>
+          <Button onClick={() => dispatch(remover(contato.telefone))}> apagar </Button>
+        </>
+      )}
+    </li>
+  )
+}
+
+export default Contato
