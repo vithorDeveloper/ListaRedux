@@ -10,6 +10,4 @@ const Botao = ({text}) => {
   )
 }
 
-
-
 export default Botao

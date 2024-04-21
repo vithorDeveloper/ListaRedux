@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Botao from "../../components/Button";
-import Form from "./style";
 import { useDispatch } from "react-redux";
 import { adicionar } from "../../store/reducers/salvarContato";
 import Input from "../../components/Input";
@@ -28,7 +27,7 @@ const FormDeCadastro = () => {
 
   return(
     <>
-      <Form onSubmit={addContact}>
+      <form onSubmit={addContact}>
         <div>
           <Input 
             type={"text"} 
@@ -50,7 +49,7 @@ const FormDeCadastro = () => {
         </div>
 
           <Botao text={"cadastrar"} />
-      </Form>
+      </form>
     </>
   )
 }
